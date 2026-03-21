@@ -1,0 +1,48 @@
+managed implementation in class ZUHL_BP_PR unique;
+strict ( 2 );
+
+define behavior for ZUHL_I_PR alias PurchaseRequisition
+persistent table zuhl_pr
+lock master
+authorization master ( instance )
+{
+  field ( readonly )
+    CreatedBy,
+    CreatedAt,
+    LastChangedBy,
+    LastChangedAt,
+    LocalLastChangedAt;
+
+  field ( numbering : managed, readonly )
+    Prnum;
+
+  create;
+  update;
+  delete;
+
+  action ( features : instance ) ApprovePR
+    result [1] $self;
+
+  action ( features : instance ) RejectPR
+    result [1] $self;
+
+  mapping for zuhl_pr
+  {
+    Prnum              = prnum;
+    Prtit              = prtit;
+    Empid              = empid;
+    Depid              = depid;
+    Erdat              = erdat;
+    Waers              = waers;
+    Htota              = htota;
+    Astat              = astat;
+    Appid              = appid;
+    Apdat              = apdat;
+    Rreason            = rreason;
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangedAt      = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
