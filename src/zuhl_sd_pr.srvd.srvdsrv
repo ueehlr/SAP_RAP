@@ -1,0 +1,4 @@
+@EndUserText.label: 'Purchase Requisition Service Definition'
+define service ZUHL_SD_PR {
+  expose ZUHL_I_PR as PurchaseRequisition;
+}
